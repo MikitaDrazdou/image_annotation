@@ -4,7 +4,7 @@ This library provides an easy-to-use solution for adding image annotation capabi
 
 ## Demo
 
-![Demo](https://github.com/MikitaDrazdou/image_annotation/blob/af6680b9e751d9ea8515dc8d4e5e87ac2d04a9a2/demo/demo.gif)
+![Demo](https://github.com/MikitaDrazdou/image_annotation/blob/main/demo/demo.gif)
 
 ## Features
 * Drawing shapes (Line, Rectangle, Oval) on images
