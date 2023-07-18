@@ -1,7 +1,7 @@
 name: image_annotation
 description: This library provides an easy-to-use solution for adding image annotation capabilities to Flutter applications. With this library, users can draw shapes, add text, highlight specific areas, and resize annotations within a defined picture zone.
 version: 0.0.1
-homepage:
+homepage: https://github.com/MikitaDrazdou/image_annotation
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
@@ -23,8 +23,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/images/логоПриложения.png
+  #  assets:
+  #    - assets/images/логоПриложения.png
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
