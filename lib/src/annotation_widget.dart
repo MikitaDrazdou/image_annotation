@@ -2,13 +2,16 @@ import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'text_annotation.dart';
+import 'annotation_painter.dart';
 
 // ImageAnnotation class
 class ImageAnnotation extends StatefulWidget {
   final String imagePath;
   final String annotationType;
 
-  ImageAnnotation({
+  const ImageAnnotation({
+    super.key,
     required this.imagePath,
     required this.annotationType,
   });
@@ -36,7 +39,7 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
     final image = Image.asset(widget.imagePath);
     final completer = Completer<ui.Image>();
 
-    image.image.resolve(ImageConfiguration()).addListener(
+    image.image.resolve(const ImageConfiguration()).addListener(
       ImageStreamListener((ImageInfo info, bool _) {
         completer.complete(info.image);
       }),
@@ -147,7 +150,7 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add Text Annotation'),
+          title: const Text('Add Text Annotation'),
           content: TextField(
             onChanged: (value) {
               text = value;
@@ -162,13 +165,13 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
                   addTextAnnotation(localPosition, text, Colors.black, 16.0);
                 }
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -184,7 +187,7 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
     });
 
     if (imageSize == null || imageOffset == null) {
-      return CircularProgressIndicator(); // Placeholder or loading indicator while the image size and offset are being retrieved
+      return const CircularProgressIndicator(); // Placeholder or loading indicator while the image size and offset are being retrieved
     }
 
     return GestureDetector(
@@ -223,83 +226,5 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
         ),
       ),
     );
-  }
-}
-
-// TextAnnotation class
-class TextAnnotation {
-  final Offset position;
-  final String text;
-  final Color textColor;
-  final double fontSize;
-
-  TextAnnotation({
-    required this.position,
-    required this.text,
-    this.textColor = Colors.black,
-    this.fontSize = 16.0,
-  });
-}
-
-// AnnotationPainter class
-class AnnotationPainter extends CustomPainter {
-  final List<List<Offset>> annotations;
-  final List<TextAnnotation> textAnnotations;
-  final String annotationType;
-
-  AnnotationPainter(
-      this.annotations, this.textAnnotations, this.annotationType);
-
-  // Paint annotations and text on the canvas
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.red
-      ..strokeWidth = 2.0
-      ..style = PaintingStyle.stroke;
-
-    for (var annotation in annotations) {
-      if (annotation.isNotEmpty) {
-        if (annotationType == 'line') {
-          for (var i = 0; i < annotation.length - 1; i++) {
-            canvas.drawLine(annotation[i], annotation[i + 1], paint);
-          }
-        } else if (annotationType == 'rectangle') {
-          final rect = Rect.fromPoints(annotation.first, annotation.last);
-          canvas.drawRect(rect, paint);
-        } else if (annotationType == 'oval') {
-          final oval = Rect.fromPoints(annotation.first, annotation.last);
-          canvas.drawOval(oval, paint);
-        }
-      }
-    }
-
-    drawTextAnnotations(canvas); // Draw text annotations
-  }
-
-  // Draw text annotations on the canvas
-  void drawTextAnnotations(Canvas canvas) {
-    for (var annotation in textAnnotations) {
-      final textSpan = TextSpan(
-        text: annotation.text,
-        style: TextStyle(
-            color: annotation.textColor, fontSize: annotation.fontSize),
-      );
-      final textPainter = TextPainter(
-        text: textSpan,
-        textDirection: TextDirection.ltr,
-      );
-      textPainter.layout();
-      final textPosition = Offset(
-        annotation.position.dx - textPainter.width / 2,
-        annotation.position.dy - textPainter.height / 2,
-      );
-      textPainter.paint(canvas, textPosition);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }

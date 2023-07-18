@@ -1,39 +1,68 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Flutter Image Annotation
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+This library provides an easy-to-use solution for adding image annotation capabilities to Flutter applications. With this library, users can draw shapes, add text, highlight specific areas, and resize annotations within a defined picture zone.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Demo
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+![Demo](https://github.com/MikitaDrazdou/image_annotation/demo/demo.gif)
 
 ## Features
+* Drawing shapes (Line, Rectangle, Oval) on images
+* Adding custom text annotations on images
+* Highlighting specific areas of an image
+* Resizing annotations within the picture zone
+* Clearing all or last annotation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## Installation
 
-## Getting started
+To add this library to your Flutter project, include it in your pubspec.yaml file:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+yaml
+dependencies:
+    image_annotation: ^latest_version
+
+Then run the following command in your terminal:
+
+console
+flutter pub get image_annotation
 
 ## Usage
+Import the package:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+dart
+import 'package:image_annotation/image_annotation.dart';
 
-```dart
-const like = 'sample';
-```
+Then, you can use the ImageAnnotation widget in your app. You can specify the type of annotation ('line', 'rectangle', 'oval', 'text') and the image path.
 
-## Additional information
+dart
+ImageAnnotation(
+    imagePath: "assets/images/example.png",
+    annotationType: "rectangle",
+)
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## Quick Example
+
+dart
+import 'package:flutter/material.dart';
+import 'package:image_annotation/image_annotation.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return MaterialApp(
+            home: Scaffold(
+                body: ImageAnnotation(
+                    imagePath: 'images/my_image.png',
+                    annotationType: 'line',
+                ),
+            ),
+        );
+    }
+}
+
+## Contact
+
+* Edu email : m.drazdou@innopolis.university
+* Telegram : mikitosik
