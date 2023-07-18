@@ -4,7 +4,7 @@ This library provides an easy-to-use solution for adding image annotation capabi
 
 ## Demo
 
-![Demo](https://github.com/MikitaDrazdou/image_annotation/demo/demo.gif)
+![Demo](https://github.com/MikitaDrazdou/image_annotation/blob/af6680b9e751d9ea8515dc8d4e5e87ac2d04a9a2/demo/demo.gif)
 
 ## Features
 * Drawing shapes (Line, Rectangle, Oval) on images
@@ -17,32 +17,32 @@ This library provides an easy-to-use solution for adding image annotation capabi
 
 To add this library to your Flutter project, include it in your pubspec.yaml file:
 
-yaml
+```yaml
 dependencies:
     image_annotation: ^latest_version
-
+```
 Then run the following command in your terminal:
 
-console
+```yaml
 flutter pub get image_annotation
-
+```
 ## Usage
 Import the package:
 
-dart
+```dart
 import 'package:image_annotation/image_annotation.dart';
-
+```
 Then, you can use the ImageAnnotation widget in your app. You can specify the type of annotation ('line', 'rectangle', 'oval', 'text') and the image path.
 
-dart
+```dart
 ImageAnnotation(
     imagePath: "assets/images/example.png",
     annotationType: "rectangle",
 )
-
+```
 ## Quick Example
 
-dart
+```dart
 import 'package:flutter/material.dart';
 import 'package:image_annotation/image_annotation.dart';
 
@@ -61,8 +61,8 @@ class MyApp extends StatelessWidget {
         );
     }
 }
-
+```
 ## Contact
 
 * Edu email : m.drazdou@innopolis.university
-* Telegram : mikitosik
+* Telegram : @droz_nik
