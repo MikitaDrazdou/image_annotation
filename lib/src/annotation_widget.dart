@@ -46,6 +46,9 @@ class _ImageAnnotationState extends State<ImageAnnotation> {
     );
 
     final loadedImage = await completer.future;
+
+    if (!mounted) return;
+
     setState(() {
       imageSize = calculateImageSize(loadedImage);
     });
